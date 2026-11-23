@@ -1,3 +1,23 @@
+# Wei-Lu Wang — personal site
+
+Content lives in `src/data.js`. Drop files in these folders (names matter):
+
+| What | Where |
+| --- | --- |
+| CV / Resume PDF | `public/pdf/CV.pdf`, `public/pdf/Resume_Weilu.pdf` |
+| Paper PDFs | `public/papers/<file>.pdf`, then add `{ label: "PDF", href: "papers/<file>.pdf" }` to that publication's `links` |
+| Project image | `src/assets/projects/<project id>.png` (or `.jpg`/`.webp`) |
+| Publication image | `src/assets/publications/<publication id>.png` |
+| Leadership / fishing photos | `src/assets/more/leadership/`, `src/assets/more/fishing/` (any names, shown in name order) |
+| Portrait | `src/assets/photo.jpg` |
+
+`<project id>` / `<publication id>` are the `id` fields in `src/data.js`.
+Missing images are simply skipped. `npm run dev` to preview, `npm run build` to build.
+
+The rest of this file documents the Astro template the site started from.
+
+---
+
 <div align="center">
 
 # academic-homepage

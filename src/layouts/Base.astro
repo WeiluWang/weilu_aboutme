@@ -90,6 +90,7 @@ const needsThemeScript = site.theme.default === "system" || site.theme.toggle;
         Astro downloads and subsets the Latin face at build time; the CJK name,
         if there is one, uses the hand-made subset in public/fonts/. */}
     <Font cssVariable="--font-serif" preload />
+    <Font cssVariable="--font-sans" preload />
     {
       profile.nameCn && (
         <Fragment>

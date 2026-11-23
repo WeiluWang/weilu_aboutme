@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import { resolveHref } from "../utils.js";
+
+// One project: title (linked when `url` is set) with the role beside it, the
+// dates, a description, an optional image, then buttons.
+const { title, url, role, date, desc, status, image, links = [] } = Astro.props;
+---
+
+<article class="project">
+  <h3 class="project-title">
+    {
+      url ? (
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          {title}
+        </a>
+      ) : (
+        title
+      )
+    }{" "}
+    {role && <span class="project-role">({role})</span>}
+  </h3>
+  {date && <p class="project-date">{date}</p>}
+  <p class="project-desc" set:html={desc} />
+  {
+    image && (
+      <figure class="project-figure">
+        <Image
+          src={image}
+          alt={`${title} — overview figure`}
+          widths={[480, 800, 1200]}
+          sizes="(max-width: 900px) 100vw, 800px"
+          loading="lazy"
+        />
+      </figure>
+    )
+  }
+  {status && <p class="project-status">{status}</p>}
+  {
+    links.length > 0 && (
+      <div class="actions">
+        {links.map((l) =>
+          l.href ? (
+            <a
+              class="pill"
+              href={resolveHref(l.href)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {l.label}
+            </a>
+          ) : (
+            <span class="pill pill-static">{l.label}</span>
+          ),
+        )}
+      </div>
+    )
+  }
+</article>

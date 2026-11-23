@@ -1,61 +1,173 @@
 ---
 import { Image } from "astro:assets";
-import { profile } from "../data.js";
-import { site } from "../site.config.js";
-import ThemeToggle from "./ThemeToggle.astro";
+import { profile, sections } from "../data.js";
+import { resolveHref } from "../utils.js";
 ---
 
-<aside>
-  <div class="avatar-wrap">
-    <Image
-      class="avatar"
-      src={profile.photo}
-      alt={`Portrait of ${profile.nameEn}`}
-      widths={[200, 400, 600]}
-      sizes="(max-width: 760px) 150px, 200px"
-      loading="eager"
-      fetchpriority="high"
-    />
-  </div>
-  <div>
-    <h2 class="side-name">{profile.nameEn}</h2>
-    <p class="side-role muted">
-      {
-        profile.role.map((line, i) => (
-          <span>
-            {line}
-            {i < profile.role.length - 1 && <br />}
-          </span>
-        ))
-      }
-    </p>
-  </div>
-  <div class="side-links">
-    {profile.location && <span class="muted">{profile.location}</span>}
-    {
-      profile.links.map((l) => (
-        <a
-          href={l.href}
-          target={l.newTab ? "_blank" : undefined}
-          rel={l.newTab ? "noopener noreferrer" : undefined}
+{/* Desktop: a fixed dark column. Phones: the same markup collapses into a
+    compact bar, and the menu button opens everything below it as one panel. */}
+<aside class="sidebar" id="sidebar">
+  <div class="side-top">
+    <div class="avatar-wrap">
+      <Image
+        class="avatar"
+        src={profile.photo}
+        alt={`Portrait of ${profile.nameEn}`}
+        widths={[96, 240, 480]}
+        sizes="(max-width: 900px) 44px, 240px"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="side-id">
+      <h1 class="side-name">{profile.nameEn}</h1>
+      <p class="side-role">{profile.role}</p>
+    </div>
+    <button
+      type="button"
+      class="menu-btn"
+      aria-expanded="false"
+      aria-controls="site-menu"
+      aria-label="Menu"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <g
+          class="icon-open"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
         >
-          {l.label}
-        </a>
-      ))
-    }
-    {site.theme.toggle && <ThemeToggle />}
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </g>
+        <g
+          class="icon-close"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </g>
+      </svg>
+    </button>
+  </div>
+
+  <div class="side-panel" id="site-menu">
+    <nav class="side-nav" aria-label="Sections">
+      <ul>
+        {
+          sections.map((s) => (
+            <li>
+              <a href={`#${s.id}`}>{s.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <ul class="side-contact">
+      <li>
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8L4.6 7.4v1.4L12 14.5l7.4-5.7V7.4L12 13Z"
+          ></path>
+        </svg>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+      </li>
+      <li>
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M12 3 1 9l4 2.2v5.6l7 3.8 7-3.8v-5.6l2-1.1V16h2V9L12 3Zm5 12.6-5 2.7-5-2.7v-3.3l5 2.7 5-2.7v3.3Z"
+          ></path>
+        </svg>
+        <a href={profile.scholar} target="_blank" rel="noopener noreferrer"
+          >Google Scholar</a
+        >
+      </li>
+      <li>
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"
+          ></path>
+        </svg>
+        <a href={profile.github} target="_blank" rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </li>
+    </ul>
+
+    <div class="side-buttons">
+      <a
+        class="btn"
+        href={resolveHref(profile.cv)}
+        target="_blank"
+        rel="noopener noreferrer">CV</a
+      >
+      <a
+        class="btn"
+        href={resolveHref(profile.resume)}
+        target="_blank"
+        rel="noopener noreferrer">Resume</a
+      >
+    </div>
   </div>
 </aside>
 
 <script>
-  // If the photo fails to load, drop its src so the "Photo" placeholder
-  // underneath shows through instead of a broken-image icon.
-  document.querySelectorAll("img.avatar").forEach((img) => {
-    const drop = () => img.removeAttribute("src");
-    img.addEventListener("error", drop);
-    // This script is deferred, so the image may already have failed before it
-    // runs and the error event is long gone. Check for that case directly:
-    // finished loading but zero pixels wide means it failed.
-    if (img.complete && img.naturalWidth === 0) drop();
+  const sidebar = document.getElementById("sidebar");
+  const button = sidebar?.querySelector(".menu-btn");
+  const links = [...(sidebar?.querySelectorAll(".side-nav a") ?? [])];
+
+  // Phone menu: open/close, Escape and outside-tap to dismiss, and close
+  // after choosing a link so the section is visible.
+  const setOpen = (open, restoreFocus = false) => {
+    if (!sidebar || !button) return;
+    sidebar.toggleAttribute("data-open", open);
+    button.setAttribute("aria-expanded", String(open));
+    button.setAttribute("aria-label", open ? "Close menu" : "Menu");
+    if (!open && restoreFocus) button.focus();
+  };
+  button?.addEventListener("click", () =>
+    setOpen(!sidebar.hasAttribute("data-open")),
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sidebar?.hasAttribute("data-open")) {
+      setOpen(false, true);
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (sidebar?.hasAttribute("data-open") && !sidebar.contains(e.target)) {
+      setOpen(false);
+    }
+  });
+  sidebar
+    ?.querySelectorAll(".side-panel a")
+    .forEach((a) => a.addEventListener("click", () => setOpen(false)));
+  matchMedia("(min-width: 901px)").addEventListener("change", (e) => {
+    if (e.matches) setOpen(false);
+  });
+
+  // Mark the section being read as the current link.
+  const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const visible = new Set();
+  const mark = () => {
+    const current = [...byId.keys()].find((id) => visible.has(id));
+    links.forEach((a) => a.removeAttribute("aria-current"));
+    if (current) byId.get(current).setAttribute("aria-current", "true");
+  };
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) =>
+        e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id),
+      );
+      mark();
+    },
+    { rootMargin: "-20% 0px -60% 0px" },
+  );
+  byId.forEach((_, id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
   });
 </script>

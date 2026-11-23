@@ -37,5 +37,15 @@ export default defineConfig({
       display: "swap",
       fallbacks: ["Georgia", "serif"],
     },
+    {
+      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--font-sans",
+      weights: [400, 600],
+      styles: ["normal"],
+      subsets: ["latin"],
+      display: "swap",
+      fallbacks: ["system-ui", "sans-serif"],
+    },
   ],
 });
