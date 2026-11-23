@@ -42,7 +42,7 @@ export const site = {
 
   // Shorter line for link previews (WeChat, X, LinkedIn, Slack).
   socialDescription:
-    "PhD student in Computer Science at Virginia Tech. HCI, CSCW, " +
+    "PhD Candidate in Computer Science at Virginia Tech. HCI, CSCW, " +
     "relatedness technologies.",
 
   // ── Structured data (schema.org Person) ─────────────────────────────────
@@ -50,7 +50,7 @@ export const site = {
   // are, and what you work on. Everything else in the JSON-LD block is derived
   // from src/data.js.
   seo: {
-    jobTitle: "PhD Student in Computer Science",
+    jobTitle: "PhD Candidate in Computer Science",
     // Your current institution. `sameAs` should be its official homepage.
     affiliation: {
       name: "Virginia Tech",

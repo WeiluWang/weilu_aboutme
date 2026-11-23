@@ -46,7 +46,7 @@ export const RESUME_URL = "pdf/Resume_Weilu.pdf";
 
 export const profile = {
   nameEn: "Wei-Lu Wang",
-  role: "PhD Student · HCI Researcher",
+  role: "PhD Candidate · HCI Researcher",
   photo,
   email: "weilu@vt.edu",
   scholar: "https://scholar.google.com/citations?user=rYbllTUAAAAJ&hl=en",
@@ -68,7 +68,7 @@ export const sections = [
 
 export const bio = [
   `Hi! My name is Wei-Lu Wang!`,
-  `I am a PhD Student in Computer Science at Virginia Tech, specializing in
+  `I am a PhD Candidate in Computer Science at Virginia Tech, specializing in
    <strong>Human-Computer Interaction (HCI)</strong> and
    <strong>Computer-Supported Cooperative Work (CSCW)</strong>. My advisor is
    <a href="https://people.cs.vt.edu/mccricks/"><strong>Dr. Scott McCrickard</strong></a>!
