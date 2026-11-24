@@ -158,7 +158,7 @@ export const projects = [
       "Playing Apart with Mission Realms: Exploring Shared Leisure Across Distance Through Location-Based Play",
     url: "https://doi.org/10.1145/3831667",
     role: "Researcher",
-    date: "08/2025 – current",
+    date: "08/2025 – 02/2026",
     desc: `Shared leisure is hard to sustain when people live apart, and most
            remote play leaves one person on a screen. Mission Realms is an
            asymmetric location-based game in which an outdoor player explores
@@ -176,7 +176,7 @@ export const projects = [
     title:
       "Folded Presence: An Origami-Inspired Pneumatic Wearable for Ambient Emotional Support Across Distance",
     role: "Co-author",
-    date: "FutureHCI 2026",
+    date: "01/2026 - 06/2026",
     desc: `Video calls and messages carry voice and image but little of the
            comfort of physical touch, which is linked to lower anxiety and
            depression. Folded Presence captures a remote partner's hand
@@ -208,7 +208,7 @@ export const projects = [
     id: "kinspire",
     title: "Kinspire",
     role: "Lead Researcher",
-    date: "12/2024 – current",
+    date: "12/2024 – 07/2026",
     url: "https://doi.org/10.1145/3816961",
     desc: `Distant parents and adult children often struggle to start
            meaningful conversations, and the right support depends on how a
@@ -303,7 +303,7 @@ export const projects = [
     title: "Fit to Draw: An Elevation of Location-Based Exergames",
     url: "https://doi.org/10.1145/3573382.3616060",
     role: "Co-author",
-    date: "CHI PLAY 2023",
+    date: "01/2023 – 06/2023",
     desc: `Many people find exercise boring and spend little time outdoors with
            others. Fit to Draw is a multiplayer, Pictionary-style exergame in
            which players walk outdoors so their GPS trace draws a word while
